@@ -2,7 +2,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 
-export function Phone() {
+export function Phone({state}: any) {
 
   return (
     <View style={{borderColor:'black', borderWidth:6, borderRadius: 10, height: 459.75, width: 216 }}>
@@ -13,8 +13,8 @@ export function Phone() {
           </View>
         </View>
         <View style={{flex:1.5}}>
-          <Text style={{fontWeight:"bold",flex:.33}}>MindTrails</Text>
-          <Text style={{fontWeight:"bold",fontSize:9,flex:.7}}>Understand Your Thinking{"\n"}{"\n"}Feel Less Anxious</Text>
+          <Text style={{fontWeight:"bold",flex:.33}}>{state.title}</Text>
+          <Text style={{fontWeight:"bold",fontSize:9,flex:.7}}>{state.flavors[0]}{"\n"}{"\n"}{state.flavors[1]}</Text>
         </View>
         <View style={{flex:.75}}>
           <View style={{flex:.33, alignItems:"flex-end"}}>
@@ -33,7 +33,6 @@ export function Phone() {
           <View style={{minWidth:'48%', margin: '1%', borderRadius:2, backgroundColor:'#00C2FF1A'}}></View>
           <View style={{minWidth:'48%', margin: '1%', borderRadius:2, backgroundColor:'#5C2FDA1A'}}></View>
         </View>
-        
       </View>
     </View>
   );

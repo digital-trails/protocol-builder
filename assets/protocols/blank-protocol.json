@@ -1,0 +1,13 @@
+{
+	"home": {
+		"title": "Main Title",
+		"flavors": ["flavor1",""],
+        "sessions": false,
+		"buttons": [
+            ["button1", "", ""],
+            ["button2", "", ""],
+            ["button3", "", ""],
+            ["button4", "", ""]
+        ]
+	}
+}

@@ -1,31 +1,41 @@
-import {StyleSheet, View, Button, Text} from 'react-native';
-import {Phone} from '@/components/phone'
-import {Split} from '@/components/split'
+import {Link} from 'expo-router'
+import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+import {PhoneSplit} from '@/components/split'
 
 export default function HomeScreen() {
+    let defaultState = {
+        "title": "Main Title",
+        "flavors": ["flavor1",""],
+        "sessions": false,
+        "buttons": [
+            ["button1", "", ""],
+            ["button2", "", ""],
+            ["button3", "", ""],
+            ["button4", "", ""]
+        ]
+    };
     return (
-        <Split margin='15%'>
+        <PhoneSplit state={defaultState}>
             <View style={styles.col}>
-                <View style={styles.button}>
-                    <Text style={styles.button_txt}>Create a protocol</Text>
-                </View>
-                <View style={styles.button}>
+                <TouchableOpacity style={styles.button}>
+                    <Link href={'/home'}>
+                        <Text style={styles.button_txt}>Create a protocol</Text>
+                    </Link>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button}>
                     <Text style={styles.button_txt}>Modify a protocol</Text>
-                </View>
+                </TouchableOpacity>
             </View>
-            <View style={styles.col}>
-                <Phone />
-            </View>
-        </Split>
+        </PhoneSplit>
     );
   }
 
 const styles = StyleSheet.create({
     col: {
-        flexDirection: 'column', 
-        justifyContent: 'center', //Centered vertically
-        alignItems: 'center', //Centered horizontally
-        flex:1
+        flex           : 1,
+        flexDirection  : 'column', 
+        justifyContent : 'center', 
+        alignItems     : 'flex-end',
     },
     button: {
         padding:5,
