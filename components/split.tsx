@@ -1,14 +1,14 @@
-import { View, StyleSheet, Button, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import {Phone} from '@/components/phone'
 
-export function PhoneSplit({state, children}:any) {
+export function PhoneSplit({state, screen, children}:any) {
   return (
     <View style={styles.row}>
         <View style={styles.left_col}>
           {children}
         </View>
         <View style={styles.phone_col}>
-            <Phone state={state}/>
+            <Phone state={state} screen={screen}/>
         </View>
     </View>
 );
@@ -22,10 +22,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   left_col: {
-    //flex:1
+    //backgroundColor:'red',
+    flex:.5
   },
   phone_col: {
-    //flex           : 1,
+    //backgroundColor: 'blue',
+    flex           : .5,
     justifyContent : 'center',
     alignItems     : 'flex-start',
   },

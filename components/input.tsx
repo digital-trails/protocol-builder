@@ -1,17 +1,17 @@
 import { StyleSheet, View, TextInput, Text, Switch } from 'react-native';
 
-export function Input({label='', type='', ...props}) {
+export function Input({label='', type='', style={}, ...props}) {
     let getInput = () => {
       switch (type) {
-        case 'text': return <TextInput autoCapitalize="none" style={styles.input} {...props} />;
-        case 'switch': return <Switch {...props} />;
+        case 'text': return <TextInput style={[styles.input,style]} {...props} autoCapitalize="none"/>;
+        case 'switch': return <Switch style={style} {...props} />;
       }
     }
 
     return (
       <View style={styles.container}>
         {label && <Text style={styles.label}>{label}</Text>}
-        {getInput()}        
+        {getInput()}
       </View>
     );
 }

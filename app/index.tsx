@@ -1,24 +1,17 @@
-import {Link} from 'expo-router'
-import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
-import {PhoneSplit} from '@/components/split'
+import { Link } from 'expo-router'
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { PhoneSplit } from '@/components/split'
+import { useProtocolContext } from '@/components/protocol';
 
 export default function HomeScreen() {
-    let defaultState = {
-        "title": "Main Title",
-        "flavors": ["flavor1",""],
-        "sessions": false,
-        "buttons": [
-            ["button1", "", ""],
-            ["button2", "", ""],
-            ["button3", "", ""],
-            ["button4", "", ""]
-        ]
-    };
+    
+    const {state:{home}} = useProtocolContext();
+
     return (
-        <PhoneSplit state={defaultState}>
+        <PhoneSplit state={home} screen="home">
             <View style={styles.col}>
                 <TouchableOpacity style={styles.button}>
-                    <Link href={'/home'}>
+                    <Link href={'/edit/home'}>
                         <Text style={styles.button_txt}>Create a protocol</Text>
                     </Link>
                 </TouchableOpacity>
