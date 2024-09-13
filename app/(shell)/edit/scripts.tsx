@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet } from "react-native"
 
-export default function EditSidebarScreen() {
+export default function EditScriptsScreen() {
     return (
         <View style={styles.col}>
-            <Text style={styles.text}> Sidebar... </Text>
+            <Text style={styles.text}> Scripts... </Text>
         </View>
     )
 }

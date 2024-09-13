@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet } from "react-native"
 
-export default function EditSidebarScreen() {
+export default function EditSensorsScreen() {
     return (
         <View style={styles.col}>
-            <Text style={styles.text}> Sidebar... </Text>
+            <Text style={styles.text}> Sensors... </Text>
         </View>
     )
 }

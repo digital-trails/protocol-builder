@@ -16,7 +16,9 @@ export default function HomeScreen() {
                     </Link>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.button_txt}>Modify a protocol</Text>
+                    <Link href={'/load'}>
+                        <Text style={styles.button_txt}>Modify a protocol</Text>
+                    </Link>
                 </TouchableOpacity>
             </View>
         </PhoneSplit>
