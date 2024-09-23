@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native"
 export default function SaveScreen() {
     return (
         <View style={styles.col}>
-            <Text style={styles.text}> Publishing... </Text>
+            <Text style={styles.text}> https://github.com/digital-trails/protocol-builder </Text>
         </View>
     )
 }
