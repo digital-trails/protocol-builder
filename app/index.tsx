@@ -12,7 +12,7 @@ export default function HomeScreen() {
             <View style={styles.col}>
                 <TouchableOpacity style={styles.button}>
                     <Link href={'/edit/home'}>
-                        <Text style={styles.button_txt}>Create a protocol</Text>
+                        <Text style={styles.button_txt}>protocol</Text>
                     </Link>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
