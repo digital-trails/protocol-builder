@@ -25,6 +25,32 @@ export default function EditHomeScreen() {
       if (action.type == 'sessions') {
         home.sessions = !home.sessions
       }
+
+      if (action.type == "label0") {
+        home.buttons[0][0] = action.value
+      }
+      if (action.type=="label1"){
+        home.buttons[1][0]=action.value
+      }
+      if (action.type =="label2"){
+        home.buttons[2][0]=action.value
+      }
+      if (action.type=="label3"){
+        home.buttons[3][0]=action.value
+      }
+      if (action.type=="icon0"){
+        home.buttons[0][1]=action.value
+      }
+      if (action.type=="icon1"){
+        home.buttons[1][1]=action.value
+      }
+      if (action.type=="icon2"){
+        home.buttons[2][1]=action.value
+      }
+      if (action.type=="icon3"){
+        home.buttons[3][1]=action.value
+      }
+      
     
       dispatch({type:'home', value:home})
     }
@@ -52,16 +78,16 @@ export default function EditHomeScreen() {
           </View>
           <View style={styles.row}>
             <View style={styles.input} >
-            <Input label='Label' type='text' onChangeText={(text:string) => dispatch({type:'title'  , value:text})} />
-            <Input label=''      type='text' onChangeText={(text:string) => dispatch({type:'title'  , value:text})} />
-            <Input label=''      type='text' onChangeText={(text:string) => dispatch({type:'title'  , value:text})} />
-            <Input label=''      type='text' onChangeText={(text:string) => dispatch({type:'title'  , value:text})} />
+            <Input label='Label' type='text' value={home.buttons[0][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label0', value:text})} />
+            <Input label=''      type='text' value={home.buttons[1][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label1'  , value:text})} />
+            <Input label=''      type='text' value={home.buttons[2][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label2'  , value:text})} />
+            <Input label=''      type='text' value={home.buttons[3][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label3'  , value:text})} />
             </View>
-            <View style={styles.input} >
-            <Input label='Icon'  type='text' onChangeText={(text:string) => dispatch({type:'flavor0', value:text})} />
-            <Input label=''      type='text' onChangeText={(text:string) => dispatch({type:'title'  , value:text})} />
-            <Input label=''      type='text' onChangeText={(text:string) => dispatch({type:'title'  , value:text})} />
-            <Input label=''      type='text' onChangeText={(text:string) => dispatch({type:'title'  , value:text})} />
+            <View style={styles.input}> 
+            <Input label='Icon'  type='text' value={home.buttons[0][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon0', value:text})} />
+            <Input label=''      type='text' value={home.buttons[1][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon1'  , value:text})} />
+            <Input label=''      type='text' value={home.buttons[2][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon2'  , value:text})} />
+            <Input label=''      type='text' value={home.buttons[3][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon3'  , value:text})} />
             </View>
             <View style={styles.input} >
             <Input label='Dest' type='text' onChangeText={(text:string) => dispatch({type:'flavor1', value:text})} />
