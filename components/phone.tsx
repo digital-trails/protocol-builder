@@ -3,6 +3,9 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { SvgUri } from 'react-native-svg';
 
 export function Phone({ state: home, screen }: any) {
+  const PHONE_WIDTH=216;
+  const SIDEBAR_WIDTH = PHONE_WIDTH*0.7;
+
   if (screen == 'home') {
     return (
       <View style={{ borderColor: 'black', borderWidth: 6, borderRadius: 10, height: 459.75, width: 216 }}>
@@ -65,6 +68,118 @@ export function Phone({ state: home, screen }: any) {
       </View>
     );
   }
+
+  if (screen == 'sidebar') {
+    return (
+      <View style={styles.phoneContainer}>
+        {/* Dimmed Background Inside Phone */}
+        <View style={styles.dimmedBackground} />
+
+        {/* Sidebar Inside Phone */}
+        <View style={[styles.sidebar, { width: SIDEBAR_WIDTH }]}>
+          {[
+            { name: "Home", icon: "home" },
+            { name: "Favorites", icon: "star" },
+            { name: "¿Qué es MindTrails Español?", icon: "lightbulb" },
+            { name: "Instrucciones", icon: "book" },
+            { name: "¿Qué es la Ansiedad?", icon: "user-md" },
+            { name: "Recursos", icon: "folder-open" },
+            { name: "F.A.Q.", icon: "question-circle" },
+            { name: "Meet the Team", icon: "users" },
+            { name: "Get Help", icon: "hands-helping" },
+            { name: "Disclaimer", icon: "file-alt" },
+            { name: "Submit Data", icon: "upload" },
+            { name: "Study Information", icon: "info-circle" },
+            { name: "Log out", icon: "sign-out-alt" },
+            { name: "Unenroll", icon: "times-circle" },
+          ].map((item, index) => (
+            <View key={index} style={styles.menuItem}>
+              <FontAwesome5 name={item.icon} size={16} color="black" style={styles.icon} />
+              <Text style={styles.menuText}>{item.name}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  phoneContainer: {
+    borderColor: 'black',
+    borderWidth: 6,
+    borderRadius: 10,
+    height: 459.75,
+    width: 216,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  header: {
+    backgroundColor: '#EEE',
+    flex: 1.25,
+    flexDirection: 'row',
+    paddingTop: 10,
+  },
+  title: {
+    fontWeight: "bold",
+    flex: 0.33,
+  },
+  flavors: {
+    fontWeight: "bold",
+    fontSize: 9,
+    flex: 0.7,
+  },
+  mainContent: {
+    backgroundColor: 'green',
+    flex: 4.25,
+  },
+  surveyButton: {
+    flex: 3,
+    backgroundColor: "white",
+    margin: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 6,
+  },
+  buttonsContainer: {
+    flex: 5,
+    backgroundColor: "white",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  button: {
+    minWidth: '48%',
+    margin: '1%',
+    borderRadius: 2,
+    backgroundColor: '#206AFF1A',
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  dimmedBackground: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  sidebar: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    height: "100%",
+    backgroundColor: "#FFFFFF",
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+  },
+  menuItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 5,
+  },
+  icon: {
+    marginRight: 10,
+  },
+  menuText: {
+    fontSize: 12,
+    fontWeight: "500",
+  },
+});

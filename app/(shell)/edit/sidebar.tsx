@@ -1,10 +1,16 @@
 import { View, Text, StyleSheet } from "react-native"
+import { PhoneSplit } from '@/components/split'
+import { useProtocolContext } from '@/components/protocol';
+
 
 export default function EditSidebarScreen() {
+    const {state:{home}, dispatch} = useProtocolContext();
+
     return (
-        <View style={styles.col}>
-            <Text style={styles.text}> Sidebar... </Text>
-        </View>
+          <PhoneSplit state={home} screen='sidebar'>
+              
+          </PhoneSplit>
+    
     )
 }
 
