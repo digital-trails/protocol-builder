@@ -10,7 +10,24 @@ const defaultProtocol = {
             ["button2", "", ""],
             ["button3", "", ""],
             ["button4", "", ""]
-        ]
+        ],
+        "sidebar": [
+            ["sidebar1", "", ""],
+            ["sidebar2", "", ""],
+            ["sidebar3", "", ""],
+            ["sidebar4", "", ""],
+            ["sidebar5", "", ""],
+            ["sidebar6", "", ""],
+            ["sidebar7", "", ""],
+            ["sidebar8", "", ""],
+            ["sidebar9", "", ""],
+            ["sidebar10", "", ""],
+            ["sidebar11", "", ""],
+            ["sidebar12", "", ""],
+            ["sidebar13", "", ""],
+            ["sidebar14", "", ""]
+
+        ],
     }
 }
 

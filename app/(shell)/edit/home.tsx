@@ -50,7 +50,6 @@ export default function EditHomeScreen() {
       if (action.type=="icon3"){
         home.buttons[3][1]=action.value
       }
-      
     
       dispatch({type:'home', value:home})
     }

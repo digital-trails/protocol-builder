@@ -77,27 +77,98 @@ export function Phone({ state: home, screen }: any) {
 
         {/* Sidebar Inside Phone */}
         <View style={[styles.sidebar, { width: SIDEBAR_WIDTH }]}>
-          {[
-            { name: "Home", icon: "home" },
-            { name: "Favorites", icon: "star" },
-            { name: "¿Qué es MindTrails Español?", icon: "lightbulb" },
-            { name: "Instrucciones", icon: "book" },
-            { name: "¿Qué es la Ansiedad?", icon: "user-md" },
-            { name: "Recursos", icon: "folder-open" },
-            { name: "F.A.Q.", icon: "question-circle" },
-            { name: "Meet the Team", icon: "users" },
-            { name: "Get Help", icon: "hands-helping" },
-            { name: "Disclaimer", icon: "file-alt" },
-            { name: "Submit Data", icon: "upload" },
-            { name: "Study Information", icon: "info-circle" },
-            { name: "Log out", icon: "sign-out-alt" },
-            { name: "Unenroll", icon: "times-circle" },
-          ].map((item, index) => (
-            <View key={index} style={styles.menuItem}>
-              <FontAwesome5 name={item.icon} size={16} color="black" style={styles.icon} />
-              <Text style={styles.menuText}>{item.name}</Text>
-            </View>
-          ))}
+
+        <Text style={{ fontWeight: 600 }}>{home.sidebar[0][0]}</Text>
+    {home.sidebar[0][1] && home.sidebar[0][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[0][1]} />
+    ) : (
+        <Text>{home.sidebar[0][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[1][0]}</Text>
+    {home.sidebar[1][1] && home.sidebar[1][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[0][1]} />
+    ) : (
+        <Text>{home.sidebar[1][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[2][0]}</Text>
+    {home.sidebar[2][1] && home.sidebar[2][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[2][1]} />
+    ) : (
+        <Text>{home.sidebar[2][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[3][0]}</Text>
+    {home.sidebar[3][1] && home.sidebar[0][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[3][1]} />
+    ) : (
+        <Text>{home.sidebar[3][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[4][0]}</Text>
+    {home.sidebar[4][1] && home.sidebar[4][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[4][1]} />
+    ) : (
+        <Text>{home.sidebar[4][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[5][0]}</Text>
+    {home.sidebar[5][1] && home.sidebar[5][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[5][1]} />
+    ) : (
+        <Text>{home.sidebar[5][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[5][0]}</Text>
+    {home.sidebar[5][1] && home.sidebar[5][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[5][1]} />
+    ) : (
+        <Text>{home.sidebar[5][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[6][0]}</Text>
+    {home.sidebar[6][1] && home.sidebar[6][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[6][1]} />
+    ) : (
+        <Text>{home.sidebar[6][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[7][0]}</Text>
+    {home.sidebar[7][1] && home.sidebar[7][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[7][1]} />
+    ) : (
+        <Text>{home.sidebar[7][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[8][0]}</Text>
+    {home.sidebar[8][1] && home.sidebar[8][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[8][1]} />
+    ) : (
+        <Text>{home.sidebar[8][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[9][0]}</Text>
+    {home.sidebar[9][1] && home.sidebar[9][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[9][1]} />
+    ) : (
+        <Text>{home.sidebar[9][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[10][0]}</Text>
+    {home.sidebar[10][1] && home.sidebar[10][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[10][1]} />
+    ) : (
+        <Text>{home.sidebar[10][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[11][0]}</Text>
+    {home.sidebar[11][1] && home.sidebar[11][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[11][1]} />
+    ) : (
+        <Text>{home.sidebar[11][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[12][0]}</Text>
+    {home.sidebar[12][1] && home.sidebar[12][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[12][1]} />
+    ) : (
+        <Text>{home.sidebar[12][1]}</Text> // Show text if not a URL
+    )}
+    <Text style={{ fontWeight: 600 }}>{home.sidebar[13][0]}</Text>
+    {home.sidebar[13][1] && home.sidebar[13][1].startsWith("http") ? (
+        <SvgUri width="30" height="30" uri={home.sidebar[13][1]} />
+    ) : (
+        <Text>{home.sidebar[13][1]}</Text> // Show text if not a URL
+    )}
+    
         </View>
       </View>
     );
