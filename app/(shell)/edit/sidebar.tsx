@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native"
+import { ScrollView, View, Text, StyleSheet } from "react-native"
 import { PhoneSplit } from '@/components/split'
 import { Input } from '@/components/input'
 import { useProtocolContext } from '@/components/protocol';
@@ -103,6 +103,7 @@ export default function EditSidebarScreen() {
     }
     return (
           <PhoneSplit state={home} screen='sidebar'>
+            <ScrollView style={styles.scrollContainer}>
               <View style={styles.row}>
                           <View style={styles.input} >
                           <Input label='Label' type='text' value={home.sidebar[0][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label0', value:text})} />
@@ -143,6 +144,7 @@ export default function EditSidebarScreen() {
                           <Input label=''     type='text' onChangeText={(text:string) => dispatch({type:'title'  , value:text})} />
                           </View>
                         </View>
+                </ScrollView>     
           </PhoneSplit>
     
     )
