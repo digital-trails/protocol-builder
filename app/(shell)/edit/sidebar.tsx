@@ -1,168 +1,147 @@
-import { ScrollView, View, Text, StyleSheet } from "react-native"
-import { PhoneSplit } from '@/components/split'
-import { Input } from '@/components/input'
+import { ScrollView, View, Text, StyleSheet, Pressable } from "react-native";
+import { PhoneSplit } from '@/components/split';
+import { Input } from '@/components/input';
 import { useProtocolContext } from '@/components/protocol';
 
-
 export default function EditSidebarScreen() {
-    const {state:{home}, dispatch} = useProtocolContext();
-    function homeDispatch(home:any, action:any) {
-      home = {...home}    
-      if (action.type == "label0") {
-        home.sidebar[0][0] = action.value
+  const { state: { home }, dispatch } = useProtocolContext();
+
+  function homeDispatch(home: any, action: any) {
+    home = { ...home };
+    const match = action.type.match(/(label|icon|dest)(\d+)/);
+    if (match) {
+      const [, field, indexStr] = match;
+      const index = parseInt(indexStr);
+      const fieldIndex = field === "label" ? 0 : field === "icon" ? 1 : 2;
+
+      if (!home.sidebar[index]) {
+        home.sidebar[index] = ["", "", ""];
       }
-      if (action.type=="label1"){
-        home.sidebar[1][0]=action.value
-      }
-      if (action.type =="label2"){
-        home.sidebar[2][0]=action.value
-      }
-      if (action.type=="label3"){
-        home.sidebar[3][0]=action.value
-      }
-      if (action.type=="label4"){
-        home.sidebar[4][0]=action.value
-      }
-      if (action.type=="label5"){
-        home.sidebar[5][0]=action.value
-      }
-      if (action.type=="label6"){
-        home.sidebar[6][0]=action.value
-      }
-      if (action.type=="label7"){
-        home.sidebar[7][0]=action.value
-      }
-      if (action.type=="label8"){
-        home.sidebar[8][0]=action.value
-      }
-      if (action.type=="label9"){
-        home.sidebar[9][0]=action.value
-      }
-      if (action.type=="label10"){
-        home.sidebar[10][0]=action.value
-      }
-      if (action.type=="label11"){
-        home.sidebar[11][0]=action.value
-      }
-      if (action.type=="label12"){
-        home.sidebar[12][0]=action.value
-      }
-      if (action.type=="label13"){
-        home.sidebar[13][0]=action.value
-      }
-      if (action.type=="label14"){
-        home.sidebar[14][0]=action.value
-      }
-      if (action.type=="icon0"){
-        home.sidebar[0][1]=action.value
-      }
-      if (action.type=="icon1"){
-        home.sidebar[1][1]=action.value
-      }
-      if (action.type=="icon2"){
-        home.sidebar[2][1]=action.value
-      }
-      if (action.type=="icon3"){
-        home.sidebar[3][1]=action.value
-      }
-      if (action.type=="icon4"){
-        home.sidebar[4][1]=action.value
-      }
-      if (action.type=="icon5"){
-        home.sidebar[5][1]=action.value
-      }
-      if (action.type=="icon6"){
-        home.sidebar[6][1]=action.value
-      }
-      if (action.type=="icon7"){
-        home.sidebar[7][1]=action.value
-      }
-      if (action.type=="icon8"){
-        home.sidebar[8][1]=action.value
-      }
-      if (action.type=="icon9"){
-        home.sidebar[9][1]=action.value
-      }
-      if (action.type=="icon10"){
-        home.sidebar[10][1]=action.value
-      }
-      if (action.type=="icon11"){
-        home.sidebar[11][1]=action.value
-      }
-      if (action.type=="icon12"){
-        home.sidebar[12][1]=action.value
-      }
-      if (action.type=="icon13"){
-        home.sidebar[13][1]=action.value
-      }
-      if (action.type=="icon14"){
-        home.sidebar[14][1]=action.value
-      }
-      
-      dispatch({type:'home', value:home})
+
+      home.sidebar[index][fieldIndex] = action.value;
+      dispatch({ type: 'home', value: home });
     }
-    return (
-          <PhoneSplit state={home} screen='sidebar'>
-            <ScrollView style={styles.scrollContainer}>
-              <View style={styles.row}>
-                          <View style={styles.input} >
-                          <Input label='Label' type='text' value={home.sidebar[0][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label0', value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[1][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label1'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[2][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label2'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[3][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label3'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[4][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label4'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[5][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label5'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[6][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label6'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[7][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label7'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[8][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label8'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[9][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label9'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[10][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label10'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[11][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label11'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[12][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label12'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[13][0]} onChangeText={(text:string) => homeDispatch(home, {type:'label13'  , value:text})} />
-                          </View>
-                          <View style={styles.input}> 
-                          <Input label='Icon'  type='text' value={home.sidebar[0][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon0', value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[1][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon1'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[2][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon2'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[3][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon3'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[4][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon4'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[5][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon5'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[6][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon6'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[7][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon7'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[8][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon8'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[9][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon9'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[10][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon10'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[11][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon11'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[12][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon12'  , value:text})} />
-                          <Input label=''      type='text' value={home.sidebar[13][1]} onChangeText={(text:string) => homeDispatch(home, {type:'icon13'  , value:text})} />
-                          </View>
-                          <View style={styles.input} >
-                          <Input label='Dest' type='text' onChangeText={(text:string) => dispatch({type:'flavor1', value:text})} />
-                          <Input label=''     type='text' onChangeText={(text:string) => dispatch({type:'title'  , value:text})} />
-                          <Input label=''     type='text' onChangeText={(text:string) => dispatch({type:'title'  , value:text})} />
-                          <Input label=''     type='text' onChangeText={(text:string) => dispatch({type:'title'  , value:text})} />
-                          </View>
-                        </View>
-                </ScrollView>     
-          </PhoneSplit>
-    
-    )
+  }
+
+  function deleteSidebarItem(index: number) {
+    const updated = home.sidebar.filter((_, idx) => idx !== index);
+    dispatch({ type: 'home', value: { ...home, sidebar: updated } });
+  }
+
+  return (
+    <PhoneSplit state={home} screen='sidebar'>
+      <ScrollView contentContainerStyle={{ alignItems: "center" }}>
+        <View style={styles.row}>
+          {/* Label Column */}
+          <View style={styles.input}>
+            <Text style={styles.header}>Label</Text>
+            {home.sidebar.map((item: any, idx: number) => (
+              <Input
+                key={`label-${idx}`}
+                label=''
+                type='text'
+                value={item[0]}
+                onChangeText={(text: string) => homeDispatch(home, { type: `label${idx}`, value: text })}
+              />
+            ))}
+          </View>
+
+          {/* Icon Column */}
+          <View style={styles.input}>
+            <Text style={styles.header}>Icon</Text>
+            {home.sidebar.map((item: any, idx: number) => (
+              <Input
+                key={`icon-${idx}`}
+                label=''
+                type='text'
+                value={item[1]}
+                onChangeText={(text: string) => homeDispatch(home, { type: `icon${idx}`, value: text })}
+              />
+            ))}
+          </View>
+
+          {/* Dest Column */}
+          <View style={styles.input}>
+            <Text style={styles.header}>Dest</Text>
+            {home.sidebar.map((item: any, idx: number) => (
+              <Input
+                key={`dest-${idx}`}
+                label=''
+                type='text'
+                value={item[2] || ""}
+                onChangeText={(text: string) => homeDispatch(home, { type: `dest${idx}`, value: text })}
+              />
+            ))}
+          </View>
+
+          {/* Delete Column */}
+          <View style={styles.deleteCol}>
+            <Text style={styles.header}> </Text>
+            {home.sidebar.map((_: any, idx: number) => (
+              <View key={`delete-wrapper-${idx}`} style={{ marginBottom: 12 }}>
+                <Pressable
+                  onPress={() => deleteSidebarItem(idx)}
+                  style={styles.deleteButton}
+                >
+                  <Text style={{ color: 'white', fontWeight: 'bold' }}>X</Text>
+                </Pressable>
+              </View>
+            ))}
+          </View>
+        </View>
+
+        {/* Add Button */}
+        <View style={{ alignItems: 'center', marginTop: 20 }}>
+          <Text
+            style={styles.addButton}
+            onPress={() => {
+              const updated = [...home.sidebar, ["New Label", "", ""]];
+              dispatch({ type: 'home', value: { ...home, sidebar: updated } });
+            }}
+          >
+            + Add Sidebar Option
+          </Text>
+        </View>
+      </ScrollView>
+    </PhoneSplit>
+  );
 }
 
 const styles = StyleSheet.create({
-    col: {
-        justifyContent: 'center',
-    },
-
-    row: {
-      flexDirection:'row',
-      gap:10,
-      justifyContent:'center',
-      maxWidth: 600,
-      width:"95%",
-    },
-    input: {
-      width:"30%",
-    },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    maxWidth: 800,
+    width: "100%",
+    gap: 10,
+  },
+  input: {
+    flex: 3,
+  },
+  deleteCol: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginBottom: 6,
+  },
+  deleteButton: {
+    backgroundColor: '#dc3545',
+    height: 44, // match input height
+    width: 44,
+    borderRadius: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 4,
+  },
+  addButton: {
+    backgroundColor: '#007bff',
+    color: 'white',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 4,
+    fontWeight: 'bold',
+  },
 });
