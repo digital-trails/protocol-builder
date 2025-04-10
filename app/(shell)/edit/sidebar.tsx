@@ -31,67 +31,60 @@ export default function EditSidebarScreen() {
   return (
     <PhoneSplit state={home} screen='sidebar'>
       <ScrollView contentContainerStyle={{ alignItems: "center" }}>
-        <View style={styles.row}>
-          {/* Label Column */}
-          <View style={styles.input}>
-            <Text style={styles.header}>Label</Text>
-            {home.sidebar.map((item: any, idx: number) => (
+        {/* Header Row */}
+        <View style={styles.headerRow}>
+          <Text style={styles.headerCell}>Label</Text>
+          <Text style={styles.headerCell}>Icon</Text>
+          <Text style={styles.headerCell}>Dest</Text>
+          <Text style={styles.headerCell}></Text>
+        </View>
+
+        {/* Sidebar Rows */}
+        {home.sidebar.map((item: any, idx: number) => (
+          <View key={`row-${idx}`} style={styles.row}>
+            <View style={styles.cell}>
               <Input
-                key={`label-${idx}`}
                 label=''
                 type='text'
                 value={item[0]}
-                onChangeText={(text: string) => homeDispatch(home, { type: `label${idx}`, value: text })}
+                onChangeText={(text: string) =>
+                  homeDispatch(home, { type: `label${idx}`, value: text })
+                }
               />
-            ))}
-          </View>
-
-          {/* Icon Column */}
-          <View style={styles.input}>
-            <Text style={styles.header}>Icon</Text>
-            {home.sidebar.map((item: any, idx: number) => (
+            </View>
+            <View style={styles.cell}>
               <Input
-                key={`icon-${idx}`}
                 label=''
                 type='text'
                 value={item[1]}
-                onChangeText={(text: string) => homeDispatch(home, { type: `icon${idx}`, value: text })}
+                onChangeText={(text: string) =>
+                  homeDispatch(home, { type: `icon${idx}`, value: text })
+                }
               />
-            ))}
-          </View>
-
-          {/* Dest Column */}
-          <View style={styles.input}>
-            <Text style={styles.header}>Dest</Text>
-            {home.sidebar.map((item: any, idx: number) => (
+            </View>
+            <View style={styles.cell}>
               <Input
-                key={`dest-${idx}`}
                 label=''
                 type='text'
                 value={item[2] || ""}
-                onChangeText={(text: string) => homeDispatch(home, { type: `dest${idx}`, value: text })}
+                onChangeText={(text: string) =>
+                  homeDispatch(home, { type: `dest${idx}`, value: text })
+                }
               />
-            ))}
+            </View>
+            <View style={styles.deleteCell}>
+              <Pressable
+                onPress={() => deleteSidebarItem(idx)}
+                style={styles.deleteButton}
+              >
+                <Text style={{ color: 'white', fontWeight: 'bold' }}>X</Text>
+              </Pressable>
+            </View>
           </View>
-
-          {/* Delete Column */}
-          <View style={styles.deleteCol}>
-            <Text style={styles.header}> </Text>
-            {home.sidebar.map((_: any, idx: number) => (
-              <View key={`delete-wrapper-${idx}`} style={{ marginBottom: 12 }}>
-                <Pressable
-                  onPress={() => deleteSidebarItem(idx)}
-                  style={styles.deleteButton}
-                >
-                  <Text style={{ color: 'white', fontWeight: 'bold' }}>X</Text>
-                </Pressable>
-              </View>
-            ))}
-          </View>
-        </View>
+        ))}
 
         {/* Add Button */}
-        <View style={{ alignItems: 'center', marginTop: 20 }}>
+        <View style={{ alignItems: 'center' }}>
           <Text
             style={styles.addButton}
             onPress={() => {
@@ -108,33 +101,41 @@ export default function EditSidebarScreen() {
 }
 
 const styles = StyleSheet.create({
-  row: {
+  headerRow: {
     flexDirection: 'row',
     justifyContent: 'center',
     maxWidth: 800,
-    width: "100%",
-    gap: 10,
+    width: '100%',
+    marginBottom: 10,
   },
-  input: {
+  headerCell: {
     flex: 3,
-  },
-  deleteCol: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  header: {
     fontWeight: 'bold',
     fontSize: 16,
-    marginBottom: 6,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    maxWidth: 800,
+    width: '100%',
+    marginBottom: 10,
+  },
+  cell: {
+    flex: 3,
+    marginRight: 10,
+  },
+  deleteCell: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   deleteButton: {
     backgroundColor: '#dc3545',
-    height: 44, // match input height
+    height: 44,
     width: 44,
     borderRadius: 6,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 4,
   },
   addButton: {
     backgroundColor: '#007bff',
@@ -143,5 +144,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 4,
     fontWeight: 'bold',
+    marginTop: 20,
   },
 });
