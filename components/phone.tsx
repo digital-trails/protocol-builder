@@ -8,46 +8,61 @@ export function Phone({ state: home, screen }: any) {
 
   if (screen === 'home') {
     return (
-      <View style={styles.phoneContainer}>
-        <View style={styles.header}>
-          <View style={{ flex: 0.5 }}>
-            <View style={{ flex: 0.33 }}>
-              <FontAwesome5 style={{ marginLeft: 10 }} size={17} name="bars" color='black' />
+      <View style={styles.phoneWrapper}>
+        <View style={styles.phoneContainer}>
+          {/* Header */}
+          <View style={styles.header}>
+            <View style={{ flex: 2, alignItems: 'flex-start', marginLeft:10 }}>
+              <Text style={styles.title}>{home.title}</Text>
+              <Text style={styles.flavors}>{home.flavors[0]}{"\n"}{"\n"}{home.flavors[1]}</Text>
             </View>
-          </View>
-          <View style={{ flex: 1.5 }}>
-            <Text style={styles.title}>{home.title}</Text>
-            <Text style={styles.flavors}>{home.flavors[0]}{"\n"}{"\n"}{home.flavors[1]}</Text>
-          </View>
-          <View style={{ flex: 0.75 }}>
-            <View style={{ flex: 0.33, alignItems: "flex-end" }}>
-              <FontAwesome5 style={{ marginRight: 10 }} size={17} name="star" color='black' />
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.mainContent}>
-          <View style={styles.surveyButton}>
-            <Text>View Surveys</Text>
-          </View>
-
-          <View style={styles.buttonsContainer}>
-            {home.buttons?.slice(0, 4).map((btn: [string, string], idx: number) => (
-              <View
-                key={idx}
-                style={[
-                  styles.button,
-                  { backgroundColor: ['#206AFF1A', '#00E05A1A', '#00C2FF1A', '#5C2FDA1A'][idx] }
-                ]}
-              >
-                <Text>{btn[0]}</Text>
-                {btn[1]?.startsWith("http") ? (
-                  <SvgUri width="30" height="30" uri={btn[1]} />
-                ) : (
-                  <Text>{btn[1]}</Text>
-                )}
+            <View style={{ flex: 0.75 }}>
+              <View style={{ flex: 0.33, alignItems: "flex-end" }}>
+                <FontAwesome5 style={{ marginRight: 10 }} size={17} name="star" color='black' />
               </View>
-            ))}
+            </View>
+          </View>
+
+          {/* Main Content */}
+          <View style={styles.mainContent}>
+            <View style={styles.surveyButton}>
+              <Text>View Surveys</Text>
+            </View>
+
+            <View style={styles.buttonsContainer}>
+              {home.buttons?.slice(0, 4).map((btn: [string, string], idx: number) => (
+                <View
+                  key={idx}
+                  style={[
+                    styles.button,
+                    { backgroundColor: ['#206AFF1A', '#00E05A1A', '#00C2FF1A', '#5C2FDA1A'][idx] }
+                  ]}
+                >
+                  <Text>{btn[0]}</Text>
+                  {btn[1]?.startsWith("http") ? (
+                    <SvgUri width="30" height="30" uri={btn[1]} />
+                  ) : (
+                    <Text>{btn[1]}</Text>
+                  )}
+                </View>
+              ))}
+            </View>
+          </View>
+
+          {/* Bottom Nav */}
+          <View style={styles.bottomBar}>
+            <View style={styles.navItem}>
+              <FontAwesome5 name="bars" size={16} />
+              <Text style={styles.navText}>Menu</Text>
+            </View>
+            <View style={styles.navItem}>
+              <FontAwesome5 name="home" size={16} />
+              <Text style={styles.navText}>Home</Text>
+            </View>
+            <View style={styles.navItem}>
+              <FontAwesome5 name="cog" size={16} />
+              <Text style={styles.navText}>Settings</Text>
+            </View>
           </View>
         </View>
       </View>
@@ -56,19 +71,21 @@ export function Phone({ state: home, screen }: any) {
 
   if (screen === 'sidebar') {
     return (
-      <View style={styles.phoneContainer}>
-        <View style={styles.dimmedBackground} />
-        <View style={[styles.sidebar, { width: SIDEBAR_WIDTH }]}>
-          {home.sidebar.map((item: [string, string], idx: number) => (
-            <View key={idx} style={{ marginBottom: 5 }}>
-              <Text style={{ fontWeight: "600" }}>{item[0]}</Text>
-              {item[1] && item[1].startsWith("http") ? (
-                <SvgUri width="30" height="30" uri={item[1]} />
-              ) : (
-                <Text>{item[1]}</Text>
-              )}
-            </View>
-          ))}
+      <View style={styles.phoneWrapper}>
+        <View style={styles.phoneContainer}>
+          <View style={styles.dimmedBackground} />
+          <View style={[styles.sidebar, { width: SIDEBAR_WIDTH }]}>
+            {home.sidebar.map((item: [string, string], idx: number) => (
+              <View key={idx} style={{ marginBottom: 5 }}>
+                <Text style={{ fontWeight: "600" }}>{item[0]}</Text>
+                {item[1] && item[1].startsWith("http") ? (
+                  <SvgUri width="30" height="30" uri={item[1]} />
+                ) : (
+                  <Text>{item[1]}</Text>
+                )}
+              </View>
+            ))}
+          </View>
         </View>
       </View>
     );
@@ -76,6 +93,11 @@ export function Phone({ state: home, screen }: any) {
 }
 
 const styles = StyleSheet.create({
+  phoneWrapper: {
+    marginVertical: 12,
+    alignItems: 'center',
+    transform: [{ scale: 0.95 }],
+  },
   phoneContainer: {
     borderColor: 'black',
     borderWidth: 6,
@@ -84,6 +106,7 @@ const styles = StyleSheet.create({
     width: 216,
     position: 'relative',
     overflow: 'hidden',
+    backgroundColor: '#fff',
   },
   header: {
     backgroundColor: '#EEE',
@@ -93,12 +116,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    flex: 0.33,
+    fontSize: 14,
   },
   flavors: {
     fontWeight: "bold",
     fontSize: 9,
-    flex: 0.7,
+    textAlign: 'center',
   },
   mainContent: {
     backgroundColor: 'green',
@@ -124,6 +147,22 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     alignItems: "center",
     justifyContent: "center",
+  },
+  bottomBar: {
+    height: 40,
+    borderTopWidth: 1,
+    borderColor: '#ccc',
+    backgroundColor: '#f8f8f8',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  navItem: {
+    alignItems: 'center',
+  },
+  navText: {
+    fontSize: 10,
+    marginTop: 2,
   },
   dimmedBackground: {
     position: "absolute",
