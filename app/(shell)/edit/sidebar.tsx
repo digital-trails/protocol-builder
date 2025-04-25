@@ -31,69 +31,68 @@ export default function EditSidebarScreen() {
   return (
     <PhoneSplit state={home} screen='sidebar'>
       <ScrollView contentContainerStyle={{ alignItems: "center" }}>
-        {/* Header Row */}
-        <View style={styles.headerRow}>
-          <Text style={styles.headerCell}>Label</Text>
-          <Text style={styles.headerCell}>Icon</Text>
-          <Text style={styles.headerCell}>Dest</Text>
-          <Text style={styles.headerCell}></Text>
-        </View>
-
-        {/* Sidebar Rows */}
-        {home.sidebar.map((item: any, idx: number) => (
-          <View key={`row-${idx}`} style={styles.row}>
-            <View style={styles.cell}>
-              <Input
-                label=''
-                type='text'
-                value={item[0]}
-                onChangeText={(text: string) =>
-                  homeDispatch(home, { type: `label${idx}`, value: text })
-                }
-              />
-            </View>
-            <View style={styles.cell}>
-              <Input
-                label=''
-                type='text'
-                value={item[1]}
-                onChangeText={(text: string) =>
-                  homeDispatch(home, { type: `icon${idx}`, value: text })
-                }
-              />
-            </View>
-            <View style={styles.cell}>
-              <Input
-                label=''
-                type='text'
-                value={item[2] || ""}
-                onChangeText={(text: string) =>
-                  homeDispatch(home, { type: `dest${idx}`, value: text })
-                }
-              />
-            </View>
-            <View style={styles.deleteCell}>
-              <Pressable
-                onPress={() => deleteSidebarItem(idx)}
-                style={styles.deleteButton}
-              >
-                <Text style={{ color: 'white', fontWeight: 'bold' }}>X</Text>
-              </Pressable>
-            </View>
+        <View style={styles.table}>
+          {/* Header Row */}
+          <View style={styles.row}>
+            <Text style={styles.headerCell}>Label</Text>
+            <Text style={[styles.headerCell, styles.nudgeRight]}>Icon</Text>
+            <Text style={[styles.headerCell, styles.nudgeRightMore]}>Dest</Text>
+            <Text style={styles.headerCell}></Text>
           </View>
-        ))}
 
-        {/* Add Button */}
-        <View style={{ alignItems: 'center' }}>
-          <Text
-            style={styles.addButton}
-            onPress={() => {
-              const updated = [...home.sidebar, ["New Label", "", ""]];
-              dispatch({ type: 'home', value: { ...home, sidebar: updated } });
-            }}
-          >
-            + Add Sidebar Option
-          </Text>
+          {/* Input Rows */}
+          {home.sidebar.map((item: any, idx: number) => (
+            <View key={`row-${idx}`} style={styles.row}>
+              <View style={styles.cellWithMargin}>
+                <Input
+                  label=""
+                  type="text"
+                  value={item[0]}
+                  onChangeText={(text: string) =>
+                    homeDispatch(home, { type: `label${idx}`, value: text })
+                  }
+                />
+              </View>
+              <View style={styles.cellWithMargin}>
+                <Input
+                  label=""
+                  type="text"
+                  value={item[1]}
+                  onChangeText={(text: string) =>
+                    homeDispatch(home, { type: `icon${idx}`, value: text })
+                  }
+                />
+              </View>
+              <View style={styles.cell}>
+                <Input
+                  label=""
+                  type="text"
+                  value={item[2] || ""}
+                  onChangeText={(text: string) =>
+                    homeDispatch(home, { type: `dest${idx}`, value: text })
+                  }
+                />
+              </View>
+              <View style={styles.deleteCell}>
+                <Pressable onPress={() => deleteSidebarItem(idx)} style={styles.deleteButton}>
+                  <Text style={{ color: "white", fontWeight: "bold" }}>X</Text>
+                </Pressable>
+              </View>
+            </View>
+          ))}
+
+          {/* Add Button */}
+          <View style={{ alignItems: 'center' }}>
+            <Text
+              style={styles.addButton}
+              onPress={() => {
+                const updated = [...home.sidebar, ["New Label", "", ""]];
+                dispatch({ type: 'home', value: { ...home, sidebar: updated } });
+              }}
+            >
+              + Add Sidebar Option
+            </Text>
+          </View>
         </View>
       </ScrollView>
     </PhoneSplit>
@@ -101,28 +100,35 @@ export default function EditSidebarScreen() {
 }
 
 const styles = StyleSheet.create({
-  headerRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    maxWidth: 800,
+  table: {
     width: '100%',
-    marginBottom: 10,
+    maxWidth: 900,
+    paddingHorizontal: 32,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
   },
   headerCell: {
     flex: 3,
     fontWeight: 'bold',
     fontSize: 16,
   },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    maxWidth: 800,
-    width: '100%',
-    marginBottom: 10,
+  nudgeRight: {
+    paddingLeft: 6,
+    textAlign: 'center',
+  },
+  nudgeRightMore: {
+    paddingLeft: 12,
+    textAlign: 'center',
+  },
+  cellWithMargin: {
+    flex: 3,
+    marginRight: 10,
   },
   cell: {
     flex: 3,
-    marginRight: 10,
   },
   deleteCell: {
     flex: 1,
@@ -145,5 +151,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     fontWeight: 'bold',
     marginTop: 20,
+    alignSelf: 'center',
   },
 });
