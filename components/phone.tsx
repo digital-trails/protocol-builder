@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { SvgUri } from 'react-native-svg';
 
@@ -76,13 +76,21 @@ export function Phone({ state: home, screen }: any) {
           <View style={styles.dimmedBackground} />
           <View style={[styles.sidebar, { width: SIDEBAR_WIDTH }]}>
             {home.sidebar.map((item: [string, string], idx: number) => (
-              <View key={idx} style={{ marginBottom: 5 }}>
+              <View
+                key={idx}
+                style={{ marginBottom: 10, flexDirection: 'row', alignItems: 'center' }}
+              >
+                {/* Icon preview */}
+                {item[1] && item[1].match(/\.(png|jpg|jpeg|webp)$/i) ? (
+                  <Image
+                    source={{ uri: item[1] }}
+                    style={{ width: 24, height: 24, marginRight: 8, borderRadius: 4 }}
+                    resizeMode="cover"
+                  />
+                ) : null}
+
+                {/* Label */}
                 <Text style={{ fontWeight: "600" }}>{item[0]}</Text>
-                {item[1] && item[1].startsWith("http") ? (
-                  <SvgUri width="30" height="30" uri={item[1]} />
-                ) : (
-                  <Text>{item[1]}</Text>
-                )}
               </View>
             ))}
           </View>
